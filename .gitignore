@@ -1,5 +1,18 @@
-# Archivos de NetBeans
-/build/
-/dist/
-/nbproject/private/
+# Ignorar carpetas de construcción y distribución
+build/
+dist/
+nbbin/
+
+# Ignorar configuración específica de NetBeans
+nbproject/
+nb-configuration.xml
+build.xml
+
+# Ignorar archivos compilados
 *.class
+*.jar
+*.war
+
+# Ignorar archivos temporales y de usuario
+private/
+.nb-gradle/
