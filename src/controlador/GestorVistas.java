@@ -6,6 +6,8 @@ package controlador;
 
 import javax.swing.JFrame;
 import vista.VistaMenuPrincipal;
+import vista.VistaCrearIncidencia; 
+import vista.VistaGestionIncidencias; 
 
 /**
  *
@@ -25,6 +27,22 @@ public class GestorVistas {
             estadoActual.dispose();
         }
         estadoActual = new VistaMenuPrincipal();
+        estadoActual.setVisible(true);
+    }
+    public void mostrarCrearIncidencia() {
+        if (estadoActual != null) {
+            estadoActual.setVisible(false);
+            estadoActual.dispose();
+        }
+        estadoActual = new VistaCrearIncidencia();
+        estadoActual.setVisible(true);
+    }
+    public void mostrarGestionIncidencias() {
+        if (estadoActual != null) {
+            estadoActual.setVisible(false);
+            estadoActual.dispose();
+        }
+        estadoActual = new VistaGestionIncidencias();
         estadoActual.setVisible(true);
     }
 }

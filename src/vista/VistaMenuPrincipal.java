@@ -58,6 +58,7 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         btnCrearIncidencia.addActionListener(this::btnCrearIncidenciaActionPerformed);
 
         btnGestionarIncidencias.setText("Ver Historial");
+        btnGestionarIncidencias.addActionListener(this::btnGestionarIncidenciasActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -104,7 +105,17 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
     
     private void btnCrearIncidenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearIncidenciaActionPerformed
         // TODO add your handling code here:
+        if (controlador != null) {
+            controlador.accionNuevaIncidencia();
+        }
     }//GEN-LAST:event_btnCrearIncidenciaActionPerformed
+
+    private void btnGestionarIncidenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionarIncidenciasActionPerformed
+        // TODO add your handling code here:
+        if (controlador != null) {
+            controlador.accionVerHistorial();
+        }
+    }//GEN-LAST:event_btnGestionarIncidenciasActionPerformed
 
     /**
      * @param args the command line arguments

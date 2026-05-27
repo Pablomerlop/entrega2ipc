@@ -40,12 +40,12 @@ public class ControladorMenuPrincipal {
     public void accionNuevaIncidencia() {
         System.out.println("¡Botón Nueva Incidencia pulsado!");
         // Aquí le diremos al Gestor de Vistas que cambie de pantalla
-        // Main.getGestorVistas().mostrarCrearIncidencia(); 
+        Main.getGestorVistas().mostrarCrearIncidencia(); 
     }
 
     public void accionVerHistorial() {
         System.out.println("¡Botón Ver Historial pulsado!");
         // Aquí le diremos al Gestor de Vistas que cambie de pantalla
-        // Main.getGestorVistas().mostrarHistorial();
+        Main.getGestorVistas().mostrarGestionIncidencias();
     }
 }
