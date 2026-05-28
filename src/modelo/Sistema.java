@@ -78,5 +78,113 @@ public class Sistema {
         );
         listaIncidencias.add(i3);
     }
+    
+    /**
+     * Devuelve todas las incidencias del sistema.
+     *
+     * @return Lista completa de incidencias.
+     */
+    public ArrayList<Incidencia> getIncidentes() {
+        return listaIncidencias;
+    }
+
+    /**
+     * Devuelve solo las incidencias abiertas.
+     *
+     * @return Lista de incidencias abiertas.
+     */
+    public List<Incidencia> getIncidenciasAbiertas() {
+        return listaIncidencias.stream()
+                .filter(i -> "Abierta".equals(i.getEstado()))
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * Devuelve el número de incidencias abiertas.
+     *
+     * @return Cantidad de incidencias con estado "Abierta".
+     */
+    public int getNumIncidenciasAbiertas() {
+        return (int) listaIncidencias.stream()
+                .filter(i -> "Abierta".equals(i.getEstado()))
+                .count();
+    }
+
+    /**
+     * Devuelve todos los vigilantes del sistema.
+     *
+     * @return Lista completa de vigilantes.
+     */
+    public ArrayList<Vigilante> getVigilantes() {
+        return listaVigilantes;
+    }
+
+    /**
+     * Devuelve los vigilantes disponibles: los que no están asignados
+     * a ninguna incidencia abierta.
+     *
+     * @return Lista de vigilantes disponibles.
+     */
+    public List<Vigilante> getVigilantesDisponibles() {
+        List<Vigilante> ocupados = listaIncidencias.stream()
+                .filter(i -> "Abierta".equals(i.getEstado()) && i.getVigilante() != null)
+                .map(Incidencia::getVigilante)
+                .collect(Collectors.toList());
+        return listaVigilantes.stream()
+                .filter(v -> !ocupados.contains(v))
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * Comprueba si ya existe una incidencia con el identificador dado.
+     *
+     * @param id Identificador a comprobar.
+     * @return true si ya existe.
+     */
+    public boolean existeId(String id) {
+        return listaIncidencias.stream().anyMatch(i -> i.getId().equals(id));
+    }
+
+    // -----------------------------------------------------------------------
+    // Operaciones
+    // -----------------------------------------------------------------------
+
+    /**
+     * Añade una nueva incidencia al sistema.
+     *
+     * @param inc Incidencia a añadir.
+     */
+    public void agregarIncidencia(Incidencia inc) {
+        listaIncidencias.add(inc);
+    }
+
+    /**
+     * Cambia el estado de una incidencia entre "Abierta" y "Cerrada".
+     *
+     * @param id Identificador de la incidencia.
+     */
+    public void cambiarEstadoIncidencia(String id) {
+        for (Incidencia i : listaIncidencias) {
+            if (i.getId().equals(id)) {
+                i.setEstado("Abierta".equals(i.getEstado()) ? "Cerrada" : "Abierta");
+                return;
+            }
+        }
+    }
+
+    /**
+     * Asigna un vigilante a una incidencia concreta.
+     *
+     * @param id       Identificador de la incidencia.
+     * @param vigilante Vigilante a asignar.
+     */
+    public void asignarVigilante(String id, Vigilante vigilante) {
+        for (Incidencia i : listaIncidencias) {
+            if (i.getId().equals(id)) {
+                i.setVigilante(vigilante);
+                return;
+            }
+        }
+    }
 
 }
