@@ -31,9 +31,8 @@ public class ControladorMenuPrincipal {
     }
     
     public void actualizarContador() {
-        // En el futuro, aquí contaremos las incidencias reales del miModelo
-        // De momento ponemos un 0 para que no dé error
-        miVista.setContadorAbiertas(0);
+        int abiertas = miModelo.getNumIncidenciasAbiertas();
+        miVista.setContadorAbiertas(abiertas);
     }
 
     // Estos son los métodos que llama tu Vista al hacer doble clic
