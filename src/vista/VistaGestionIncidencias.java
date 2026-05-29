@@ -19,6 +19,9 @@ public class VistaGestionIncidencias extends javax.swing.JFrame {
     public VistaGestionIncidencias() {
         initComponents();
         controlador = new controlador.ControladorGestionIncidencias(this);
+        
+        // Poner el campo ID en gris para indicar visualmente que está bloqueado
+        txtDetalleId.setBackground(new java.awt.Color(220, 220, 220)); 
     }
 
     /**

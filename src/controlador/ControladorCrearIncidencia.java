@@ -17,7 +17,6 @@ import vista.VistaCrearIncidencia;
  *
  * @author david
  */
-
 public class ControladorCrearIncidencia {
     
     private VistaCrearIncidencia miVista;
@@ -50,6 +49,14 @@ public class ControladorCrearIncidencia {
             String tipo = miVista.getCbTipo();
             String desc = miVista.getTxtAreaDescripcion();
             
+            // Validar que, si se crea como Cerrada, se haya escrito una solución
+            String estado = miVista.getCbEstado();
+            String solucion = miVista.getTxtAreaSolucion();
+            if (estado.equals("Cerrada") && solucion.trim().isEmpty()) {
+                JOptionPane.showMessageDialog(miVista, "Para registrar una incidencia como 'Cerrada', debe escribir la Solución aplicada.", "Falta Solución", JOptionPane.WARNING_MESSAGE);
+                return; // Cortamos la ejecución
+            }
+            
             // Comprobar si el ID ya existe en el sistema
             if (miModelo.existeId(id)) {
                 JOptionPane.showMessageDialog(miVista, "Error: El ID de incidencia ya existe.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -64,7 +71,6 @@ public class ControladorCrearIncidencia {
             Incidencia nueva = new Incidencia(id, dni, urb, dir, tipo, desc, fechaHora);
 
             // Aplicar estado y solución
-            String estado = miVista.getCbEstado();
             if (estado.equals("Cerrada")) {
                 nueva.setEstado(Incidencia.ESTADO_CERRADA);
                 nueva.setSolucion(miVista.getTxtAreaSolucion());
