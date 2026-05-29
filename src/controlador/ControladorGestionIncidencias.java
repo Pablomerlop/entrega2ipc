@@ -114,6 +114,17 @@ public class ControladorGestionIncidencias {
         }
 
         miModelo.cambiarEstadoIncidencia(idFila);
+
+        // Si la incidencia estaba "Abierta", debemos extraer el texto de la vista y guardarlo en el modelo.
+        if (estadoActual.equals("Abierta")) {
+            for (Incidencia i : miModelo.getIncidentes()) {
+                if (i.getId().equals(idFila)) {
+                    i.setSolucion(miVista.getDetalleSolucion());
+                    break;
+                }
+            }
+        }
+
         actualizarTabla(miVista.getCbFiltro().getSelectedItem().toString());
         cargarVigilantesDisponibles(); // Porque se puede liberar un vigilante
         JOptionPane.showMessageDialog(miVista, "Estado cambiado correctamente.");
