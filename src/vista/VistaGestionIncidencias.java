@@ -103,6 +103,9 @@ public class VistaGestionIncidencias extends javax.swing.JFrame {
         jLabel2.setText("ID:");
 
         txtDetalleId.setEditable(false);
+        txtDetalleId.addActionListener(this::txtDetalleIdActionPerformed);
+
+        txtDetalleDni.addActionListener(this::txtDetalleDniActionPerformed);
 
         jLabel3.setText("DNI:");
 
@@ -236,11 +239,11 @@ public class VistaGestionIncidencias extends javax.swing.JFrame {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnCambiarEstado)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(btnAsignarVigilante)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(cbVigilantesAsignar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(cbVigilantesAsignar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(btnCambiarEstado))
                                 .addGap(193, 193, 193)
                                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
@@ -300,6 +303,14 @@ public class VistaGestionIncidencias extends javax.swing.JFrame {
     private void btnGuardarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarCambiosActionPerformed
         controlador.accionGuardarModificacion();
     }//GEN-LAST:event_btnGuardarCambiosActionPerformed
+
+    private void txtDetalleDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDetalleDniActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDetalleDniActionPerformed
+
+    private void txtDetalleIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDetalleIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDetalleIdActionPerformed
 
     /**
      * @param args the command line arguments

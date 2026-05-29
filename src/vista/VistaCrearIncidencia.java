@@ -78,7 +78,11 @@ public class VistaCrearIncidencia extends javax.swing.JFrame {
 
         txtId.addActionListener(this::txtIdActionPerformed);
 
+        txtDni.addActionListener(this::txtDniActionPerformed);
+
         txtUrbanizacion.addActionListener(this::txtUrbanizacionActionPerformed);
+
+        txtFecha.addActionListener(this::txtFechaActionPerformed);
 
         jLabel7.setText("Fecha y Hora (dd/MM/yyyy HH:mm):");
 
@@ -257,6 +261,14 @@ public class VistaCrearIncidencia extends javax.swing.JFrame {
         controlador.accionVolver();
     }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void txtDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDniActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDniActionPerformed
+
+    private void txtFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFechaActionPerformed
 
     /**
      * @param args the command line arguments

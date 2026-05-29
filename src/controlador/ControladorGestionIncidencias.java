@@ -151,33 +151,46 @@ public class ControladorGestionIncidencias {
 
         for (Incidencia i : miModelo.getIncidentes()) {
             if (i.getId().equals(idFila)) {
-                // Solo se puede editar si no tiene vigilante asignado
-                if (i.getVigilante() != null && i.isAbierta()) {
-                    JOptionPane.showMessageDialog(miVista, "No se puede modificar una incidencia que ya tiene un vigilante asignado.");
+                
+                // Comprobar que se puede modificar (Ni cerrada, ni asignada)
+                if (!i.isAbierta()) {
+                    JOptionPane.showMessageDialog(miVista, "No se puede modificar una incidencia que ya está cerrada.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                if (i.getVigilante() != null) {
+                    JOptionPane.showMessageDialog(miVista, "No se puede modificar una incidencia que ya tiene un vigilante asignado.", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
                 
-                // Validacion y parseo de la nueva fecha
+                // Intentar guardar los cambios
                 try {
+                    // Validacion y parseo de la nueva fecha
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
                     LocalDateTime nuevaFechaHora = LocalDateTime.parse(miVista.getDetalleFecha(), formatter);
-                    i.setFechaHora(nuevaFechaHora); // Guardamos la nueva fecha
+                    
+                    // Actualizamos el resto de los datos (estos métodos ahora lanzan IllegalArgumentException si fallan)
+                    i.setDniResidente(miVista.getDetalleDni());
+                    i.setUrbanizacion(miVista.getDetalleUrb());
+                    i.setDireccion(miVista.getDetalleDir());
+                    i.setTipo(miVista.getDetalleTipo());
+                    i.setDescripcion(miVista.getDetalleDesc());
+                    i.setSolucion(miVista.getDetalleSolucion());
+                    
+                    // Solo si todo lo de arriba no ha dado error, guardamos la fecha
+                    i.setFechaHora(nuevaFechaHora); 
+                    
+                    actualizarTabla(miVista.getCbFiltro().getSelectedItem().toString());
+                    JOptionPane.showMessageDialog(miVista, "Incidencia modificada correctamente.");
+                    break;
+                    
                 } catch (DateTimeParseException ex) {
                     JOptionPane.showMessageDialog(miVista, "Error: El formato de la fecha debe ser dd/MM/yyyy HH:mm", "Error de Formato", JOptionPane.ERROR_MESSAGE);
-                    return; // Si la fecha está mal escrita, cortamos la ejecución para que no guarde a medias
+                    return; // Cortamos la ejecución
+                } catch (IllegalArgumentException ex) {
+                    // Capturamos los fallos del DNI, Urbanización, etc.
+                    JOptionPane.showMessageDialog(miVista, ex.getMessage(), "Error en los datos", JOptionPane.ERROR_MESSAGE);
+                    return; // Cortamos la ejecución para no guardar a medias
                 }
-                
-                // Actualizar el resto de los datos de la incidencia
-                i.setDniResidente(miVista.getDetalleDni());
-                i.setUrbanizacion(miVista.getDetalleUrb());
-                i.setDireccion(miVista.getDetalleDir());
-                i.setTipo(miVista.getDetalleTipo());
-                i.setDescripcion(miVista.getDetalleDesc());
-                i.setSolucion(miVista.getDetalleSolucion());
-                
-                actualizarTabla(miVista.getCbFiltro().getSelectedItem().toString());
-                JOptionPane.showMessageDialog(miVista, "Incidencia modificada correctamente.");
-                break;
             }
         }
     }
