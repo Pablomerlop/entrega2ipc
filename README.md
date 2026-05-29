@@ -1,35 +1,26 @@
-# p2_grupo39
+# Sistema de Gestión de Seguridad - GesSec S.L.
 
+## Descripción del Proyecto
+Proyecto desarrollado para la asignatura de **Interacción Persona-Computadora (IPC)** durante el curso 2025/2026. La aplicación consiste en una interfaz de escritorio implementada en **Java Swing** que permite a la operadora de la central de seguridad de GesSec S.L. realizar el seguimiento y gestión operativa de incidencias.
 
+El diseño sigue el patrón de arquitectura **Modelo-Vista-Controlador (MVC)**, garantizando la separación de la lógica de negocio, la capa de persistencia en memoria y la interfaz de usuario.
 
-# GesSec S.L. - Sistema de Gestión de Seguridad (Práctica 2)
+## Características Técnicas
+* **Arquitectura:** Modelo-Vista-Controlador (MVC).
+* **Gestión de Navegación:** Implementada mediante una máquina de estados controlada por `GestorVistas`.
+* **Persistencia:** Datos almacenados en memoria (sin persistencia externa).
+* **Entorno de desarrollo:** Apache NetBeans 28, JDK 21.
 
-Este proyecto corresponde a la **Práctica 2** de la asignatura **Interacción Persona-Computadora (IPC)**. Consiste en el desarrollo de una interfaz gráfica de escritorio funcional para la operadora de la central de seguridad de GesSec S.L., aplicando los principios de Diseño Centrado en el Usuario (DCU) y el patrón de arquitectura **Modelo-Vista-Controlador (MVC)**.
+## Funcionalidades Implementadas
+* **Dashboard:** Visualización del contador de incidencias abiertas y acceso a los módulos operativos.
+* **Registro de Incidencias:** Formulario de alta con validaciones de formato (DNI, ID, longitud de campos y tipos de incidencia).
+* **Gestión Operativa:**
+    * Filtrado de incidencias por estado (Abierta/Cerrada/Todas).
+    * Asignación de vigilantes disponibles.
+    * Edición de detalles y registro de soluciones aplicadas para el cierre de incidencias.
 
-## 📋 Descripción del Proyecto
-
-El objetivo es implementar una aplicación en Java Swing que permita a una Operadora Senior de Central gestionar incidencias y residentes de urbanizaciones privadas. La aplicación se centra en la eficiencia y facilidad de uso, permitiendo:
-- **Autenticación segura** mediante una ventana de Login.
-- **Visualización en tiempo real** de alertas e incidencias en un Dashboard principal.
-- **Gestión de datos**, incluyendo la búsqueda de residentes y el registro de nuevas incidencias.
-
-## 🏗️ Arquitectura: Modelo-Vista-Controlador (MVC)
-
-Para garantizar la mantenibilidad y la separación de responsabilidades, el proyecto sigue estrictamente el patrón MVC:
-
-- **Modelo (`model`)**: Gestiona la lógica de negocio y los datos (Incidencias, Residentes, Vehículos). No tiene conocimiento de la interfaz gráfica.
-- **Vista (`view`)**: Define la interfaz de usuario mediante componentes Swing (JFrame, JPanel, JTable). Es pasiva y notifica eventos al controlador.
-- **Controlador (`controller`)**: Actúa como puente. Escucha las acciones de la vista (ActionListener) y actualiza el modelo o cambia de ventana según sea necesario.
-
-## 🚀 Características Principales
-
-1. **Multiventana**: Implementación de navegación fluida entre la pantalla de acceso y el panel de control.
-2. **Tablas Dinámicas**: Uso de `JTable` para listar incidencias, permitiendo una visión clara del estado de la seguridad.
-3. **Buscador de Residentes**: Funcionalidad para identificar usuarios rápidamente a través de su número de teléfono.
-4. **Tratamiento de Errores**: Validación de campos de entrada y mensajes informativos al usuario.
-
-## 🛠️ Requisitos e Instalación
-
-### Requisitos previos
-- **Java JDK 21**.
-- **IDE**: NetBeans
+## Estructura del Repositorio
+* `src/modelo/`: Clases de dominio y lógica del sistema.
+* `src/vista/`: Interfaz gráfica basada en formularios `JFrame` (Swing).
+* `src/controlador/`: Lógica de control y gestión de eventos (ActionListener).
+* `src/principal/`: Clase de entrada (`Main`) para la ejecución de la aplicación.

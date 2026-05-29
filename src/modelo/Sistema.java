@@ -42,7 +42,7 @@ public class Sistema {
         listaVigilantes.add(juan);
         listaVigilantes.add(francisco);
 
-        // --- Incidencias ---
+        // INCIDENCIAS
         // Incidencia 1: cerrada, vigilante Carlos Mirón
         Incidencia i1 = new Incidencia(
                 "INC001", "12000000A", "Los Pinos",
@@ -145,10 +145,7 @@ public class Sistema {
         return listaIncidencias.stream().anyMatch(i -> i.getId().equals(id));
     }
 
-    // -----------------------------------------------------------------------
-    // Operaciones
-    // -----------------------------------------------------------------------
-
+    // OPERACIONES
     /**
      * Añade una nueva incidencia al sistema.
      *

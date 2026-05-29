@@ -115,7 +115,7 @@ public class ControladorGestionIncidencias {
 
         miModelo.cambiarEstadoIncidencia(idFila);
 
-        // Si la incidencia estaba "Abierta", debemos extraer el texto de la vista y guardarlo en el modelo.
+        // Guardar la solución redactada antes de cerrar
         if (estadoActual.equals("Abierta")) {
             for (Incidencia i : miModelo.getIncidentes()) {
                 if (i.getId().equals(idFila)) {
@@ -126,7 +126,7 @@ public class ControladorGestionIncidencias {
         }
 
         actualizarTabla(miVista.getCbFiltro().getSelectedItem().toString());
-        cargarVigilantesDisponibles(); // Porque se puede liberar un vigilante
+        cargarVigilantesDisponibles(); // Refrescar (puede haberse liberado un vigilante)
         JOptionPane.showMessageDialog(miVista, "Estado cambiado correctamente.");
     }
 
@@ -179,7 +179,7 @@ public class ControladorGestionIncidencias {
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
                     LocalDateTime nuevaFechaHora = LocalDateTime.parse(miVista.getDetalleFecha(), formatter);
                     
-                    // Actualizamos el resto de los datos (estos métodos ahora lanzan IllegalArgumentException si fallan)
+                    // Modificar datos de la incidencia
                     i.setDniResidente(miVista.getDetalleDni());
                     i.setUrbanizacion(miVista.getDetalleUrb());
                     i.setDireccion(miVista.getDetalleDir());
@@ -187,7 +187,7 @@ public class ControladorGestionIncidencias {
                     i.setDescripcion(miVista.getDetalleDesc());
                     i.setSolucion(miVista.getDetalleSolucion());
                     
-                    // Solo si todo lo de arriba no ha dado error, guardamos la fecha
+                    // Actualizar fecha
                     i.setFechaHora(nuevaFechaHora); 
                     
                     actualizarTabla(miVista.getCbFiltro().getSelectedItem().toString());
@@ -198,9 +198,9 @@ public class ControladorGestionIncidencias {
                     JOptionPane.showMessageDialog(miVista, "Error: El formato de la fecha debe ser dd/MM/yyyy HH:mm", "Error de Formato", JOptionPane.ERROR_MESSAGE);
                     return; // Cortamos la ejecución
                 } catch (IllegalArgumentException ex) {
-                    // Capturamos los fallos del DNI, Urbanización, etc.
+                    // Manejo de validaciones incorrectas
                     JOptionPane.showMessageDialog(miVista, ex.getMessage(), "Error en los datos", JOptionPane.ERROR_MESSAGE);
-                    return; // Cortamos la ejecución para no guardar a medias
+                    return;
                 }
             }
         }

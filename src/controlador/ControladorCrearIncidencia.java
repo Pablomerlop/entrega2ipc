@@ -34,7 +34,7 @@ public class ControladorCrearIncidencia {
     }
     
     public void accionVolver() {
-        // Usamos el Gestor de Vistas para volver al menú principal
+        // Volver al menú principal
         Main.getGestorVistas().mostrarMenuPrincipal();
     }
     
@@ -87,17 +87,17 @@ public class ControladorCrearIncidencia {
                 }
             }
 
-            // Si todo va bien, la guardamos en el sistema
+            // Guardar incidencia
             miModelo.agregarIncidencia(nueva);
             
-            // Mostramos mensaje de éxito y volvemos al menú
+            // Notificar éxito
             JOptionPane.showMessageDialog(miVista, "¡Incidencia creada con éxito!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
             accionVolver();
             
         } catch (DateTimeParseException ex) {
             JOptionPane.showMessageDialog(miVista, "Error: El formato de la fecha debe ser dd/MM/yyyy HH:mm", "Error de Formato", JOptionPane.ERROR_MESSAGE);
         } catch (IllegalArgumentException ex) {
-            // Este catch captura automáticamente cualquier validación que falle en la clase Incidencia
+            // Capturar errores de validación del modelo
             JOptionPane.showMessageDialog(miVista, ex.getMessage(), "Error en los datos", JOptionPane.ERROR_MESSAGE);
         }
     }

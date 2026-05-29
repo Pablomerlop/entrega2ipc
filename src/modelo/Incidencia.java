@@ -29,7 +29,6 @@ public class Incidencia {
     private static final DateTimeFormatter FMT
             = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
-    // --- Atributos ---
     private String id;
     private String estado;
     private String dniResidente;
@@ -94,7 +93,7 @@ public class Incidencia {
             throw new IllegalArgumentException("Tipo de incidencia no válido: '" + tipo + "'.");
         }
 
-        // --- fechaHora: obligatoria
+        // fechaHora: obligatoria
         if (fechaHora == null) {
             throw new IllegalArgumentException("La fecha y hora no pueden ser nulas.");
         }
