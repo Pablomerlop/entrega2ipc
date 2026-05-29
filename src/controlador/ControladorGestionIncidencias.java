@@ -12,7 +12,14 @@ import vista.VistaGestionIncidencias;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
 import java.util.List;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
+/**
+ *
+ * @author pablo
+ */
 public class ControladorGestionIncidencias {
     
     private VistaGestionIncidencias miVista;
@@ -150,7 +157,17 @@ public class ControladorGestionIncidencias {
                     return;
                 }
                 
-                // Actualizar los datos de la incidencia
+                // Validacion y parseo de la nueva fecha
+                try {
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+                    LocalDateTime nuevaFechaHora = LocalDateTime.parse(miVista.getDetalleFecha(), formatter);
+                    i.setFechaHora(nuevaFechaHora); // Guardamos la nueva fecha
+                } catch (DateTimeParseException ex) {
+                    JOptionPane.showMessageDialog(miVista, "Error: El formato de la fecha debe ser dd/MM/yyyy HH:mm", "Error de Formato", JOptionPane.ERROR_MESSAGE);
+                    return; // Si la fecha está mal escrita, cortamos la ejecución para que no guarde a medias
+                }
+                
+                // Actualizar el resto de los datos de la incidencia
                 i.setDniResidente(miVista.getDetalleDni());
                 i.setUrbanizacion(miVista.getDetalleUrb());
                 i.setDireccion(miVista.getDetalleDir());

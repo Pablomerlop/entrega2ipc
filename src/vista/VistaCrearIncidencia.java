@@ -290,7 +290,7 @@ public class VistaCrearIncidencia extends javax.swing.JFrame {
     public String getTxtDireccion() { return txtDireccion.getText(); }
     public String getTxtFecha() { return txtFecha.getText(); }
     public String getCbTipo() { return cbTipo.getSelectedItem().toString(); }
-    public String getTxtAreaDescripcion() { return txtAreaDescripcion.getText();
+    public String getTxtAreaDescripcion() { return txtAreaDescripcion.getText(); }
     
     public javax.swing.JComboBox<String> getCbVigilante() { 
         return cbVigilante; 
@@ -299,7 +299,6 @@ public class VistaCrearIncidencia extends javax.swing.JFrame {
         return cbVigilante.getSelectedItem() != null ? cbVigilante.getSelectedItem().toString() : "Sin asignar"; 
     }
     
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cbEstado;
     private javax.swing.JComboBox<String> cbTipo;
