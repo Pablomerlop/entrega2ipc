@@ -71,7 +71,7 @@ public class VistaCrearIncidencia extends javax.swing.JFrame {
 
         jLabel7.setText("Fecha y Hora (dd/MM/yyyy HH:mm):");
 
-        cbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Otro   ", " Alarma de intrusión activada   ", "Alarma de humo  ", " Accidente   ", "Problema de causa natural   ", "Solicitud de asistencia general " }));
+        cbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Otro", "Alarma de intrusión activada", "Alarma de humo", "Accidente", "Problema de causa natural", "Solicitud de asistencia general" }));
         cbTipo.addActionListener(this::cbTipoActionPerformed);
 
         txtAreaDescripcion.setColumns(20);
@@ -132,7 +132,7 @@ public class VistaCrearIncidencia extends javax.swing.JFrame {
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(112, Short.MAX_VALUE))))
+                        .addContainerGap(117, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
