@@ -9,9 +9,8 @@ package vista;
  * @author david
  */
 public class VistaGestionIncidencias extends javax.swing.JFrame {
-    
-    
-    
+
+    private controlador.ControladorGestionIncidencias controlador;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VistaGestionIncidencias.class.getName());
 
     /**
@@ -19,6 +18,7 @@ public class VistaGestionIncidencias extends javax.swing.JFrame {
      */
     public VistaGestionIncidencias() {
         initComponents();
+        controlador = new controlador.ControladorGestionIncidencias(this);
     }
 
     /**
@@ -205,12 +205,16 @@ public class VistaGestionIncidencias extends javax.swing.JFrame {
         );
 
         btnGuardarCambios.setText("Guardar Cambios");
+        btnGuardarCambios.addActionListener(this::btnGuardarCambiosActionPerformed);
 
         btnCambiarEstado.setText("Abrir / Cerrar Incidencia");
+        btnCambiarEstado.addActionListener(this::btnCambiarEstadoActionPerformed);
 
         btnAsignarVigilante.setText("Asignar Vigilante");
+        btnAsignarVigilante.addActionListener(this::btnAsignarVigilanteActionPerformed);
 
         btnVolver.setText("Volver");
+        btnVolver.addActionListener(this::btnVolverActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -275,8 +279,24 @@ public class VistaGestionIncidencias extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbFiltroActionPerformed
-        // TODO add your handling code here:
+        controlador.accionFiltrar();
     }//GEN-LAST:event_cbFiltroActionPerformed
+
+    private void btnAsignarVigilanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarVigilanteActionPerformed
+        controlador.accionAsignarVigilante();
+    }//GEN-LAST:event_btnAsignarVigilanteActionPerformed
+
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        controlador.accionVolver();
+    }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void btnCambiarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiarEstadoActionPerformed
+        controlador.accionCambiarEstado();
+    }//GEN-LAST:event_btnCambiarEstadoActionPerformed
+
+    private void btnGuardarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarCambiosActionPerformed
+        controlador.accionGuardarModificacion();
+    }//GEN-LAST:event_btnGuardarCambiosActionPerformed
 
     /**
      * @param args the command line arguments
