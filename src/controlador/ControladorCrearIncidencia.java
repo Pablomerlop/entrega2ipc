@@ -26,6 +26,12 @@ public class ControladorCrearIncidencia {
     public ControladorCrearIncidencia(VistaCrearIncidencia vista) {
         this.miVista = vista;
         this.miModelo = Main.getSistema();
+        
+        // Cargar vigilantes disponibles al iniciar
+        miVista.getCbVigilante().addItem("Sin asignar");
+        for (modelo.Vigilante v : miModelo.getVigilantesDisponibles()) {
+            miVista.getCbVigilante().addItem(v.getNombre());
+        }
     }
     
     public void accionVolver() {
@@ -64,6 +70,17 @@ public class ControladorCrearIncidencia {
                 nueva.setSolucion(miVista.getTxtAreaSolucion());
             }
             
+            // Asignar vigilante si se ha seleccionado uno
+            String nombreVig = miVista.getVigilanteSeleccionado();
+            if (!nombreVig.equals("Sin asignar")) {
+                for (modelo.Vigilante v : miModelo.getVigilantesDisponibles()) {
+                    if (v.getNombre().equals(nombreVig)) {
+                        nueva.setVigilante(v);
+                        break;
+                    }
+                }
+            }
+
             // Si todo va bien, la guardamos en el sistema
             miModelo.agregarIncidencia(nueva);
             
