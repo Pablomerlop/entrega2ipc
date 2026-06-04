@@ -29,7 +29,6 @@ public class Incidencia {
     private static final DateTimeFormatter FMT
             = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
-    // --- Atributos ---
     private String id;
     private String estado;
     private String dniResidente;
@@ -94,7 +93,7 @@ public class Incidencia {
             throw new IllegalArgumentException("Tipo de incidencia no válido: '" + tipo + "'.");
         }
 
-        // --- fechaHora: obligatoria
+        // fechaHora: obligatoria
         if (fechaHora == null) {
             throw new IllegalArgumentException("La fecha y hora no pueden ser nulas.");
         }
@@ -249,6 +248,9 @@ public class Incidencia {
      * @param dniResidente Nuevo DNI.
      */
     public void setDniResidente(String dniResidente) {
+        if (dniResidente == null || !dniResidente.matches("\\d{8}[A-Za-z]")) {
+            throw new IllegalArgumentException("El DNI debe tener 8 dígitos seguidos de una letra (recibido: '" + dniResidente + "').");
+        }
         this.dniResidente = dniResidente;
     }
 
@@ -258,6 +260,12 @@ public class Incidencia {
      * @param urbanizacion Nueva urbanización.
      */
     public void setUrbanizacion(String urbanizacion) {
+        if (urbanizacion == null || urbanizacion.isBlank()) {
+            throw new IllegalArgumentException("El nombre de la urbanización no puede estar vacío.");
+        }
+        if (urbanizacion.length() > 50) {
+            throw new IllegalArgumentException("El nombre de la urbanización no puede superar 50 caracteres (actual: " + urbanizacion.length() + ").");
+        }
         this.urbanizacion = urbanizacion;
     }
 
@@ -267,6 +275,9 @@ public class Incidencia {
      * @param direccion Nueva dirección (puede ser vacía).
      */
     public void setDireccion(String direccion) {
+        if (direccion != null && direccion.length() > 50) {
+            throw new IllegalArgumentException("La dirección no puede superar 50 caracteres (actual: " + direccion.length() + ").");
+        }
         this.direccion = (direccion == null) ? "" : direccion;
     }
 
@@ -276,6 +287,14 @@ public class Incidencia {
      * @param tipo Nuevo tipo (usar constantes TIPO_*).
      */
     public void setTipo(String tipo) {
+        if (tipo == null || (!tipo.equals(TIPO_INTRUSION)
+                && !tipo.equals(TIPO_HUMO)
+                && !tipo.equals(TIPO_ACCIDENTE)
+                && !tipo.equals(TIPO_CAUSA_NATURAL)
+                && !tipo.equals(TIPO_ASISTENCIA)
+                && !tipo.equals(TIPO_OTRO))) {
+            throw new IllegalArgumentException("Tipo de incidencia no válido: '" + tipo + "'.");
+        }
         this.tipo = tipo;
     }
 

@@ -7,7 +7,7 @@ package controlador;
 
 import vista.VistaMenuPrincipal;
 import modelo.Sistema;
-import principal.Main; // Importamos el Main de su nueva carpeta
+import principal.Main;
 
 /**
  *
@@ -19,14 +19,13 @@ public class ControladorMenuPrincipal {
     private VistaMenuPrincipal miVista;
     private Sistema miModelo;
 
-    // El constructor del controlador tiene como parámetro la vista 
     public ControladorMenuPrincipal(VistaMenuPrincipal v) {
         this.miVista = v;
         
-        // Recuperamos los datos centrales desde el Main
+        // Obtener instancia del sistema
         this.miModelo = Main.getSistema();
         
-        // Actualizamos el número nada más arrancar
+        // Inicializar contador
         actualizarContador();
     }
     
@@ -35,7 +34,7 @@ public class ControladorMenuPrincipal {
         miVista.setContadorAbiertas(abiertas);
     }
 
-    // Estos son los métodos que llama tu Vista al hacer doble clic
+    // Eventos de la vista
     public void accionNuevaIncidencia() {
         System.out.println("¡Botón Nueva Incidencia pulsado!");
         // Aquí le diremos al Gestor de Vistas que cambie de pantalla
@@ -44,7 +43,7 @@ public class ControladorMenuPrincipal {
 
     public void accionVerHistorial() {
         System.out.println("¡Botón Ver Historial pulsado!");
-        // Aquí le diremos al Gestor de Vistas que cambie de pantalla
+        // Navegar a Gestión
         Main.getGestorVistas().mostrarGestionIncidencias();
     }
 }

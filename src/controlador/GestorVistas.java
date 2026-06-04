@@ -15,7 +15,7 @@ import vista.VistaGestionIncidencias;
  */
 public class GestorVistas {
     
-    // Mantenemos el estado actual (ventana en la que nos encontramos)
+    // Ventana activa actualmente
     private JFrame estadoActual;
 
     public GestorVistas() {

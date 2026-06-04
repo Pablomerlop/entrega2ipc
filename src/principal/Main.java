@@ -6,7 +6,7 @@ package principal;
  */
 
 import controlador.GestorVistas;
-import modelo.Sistema; // Asegúrate de que tu clase principal del modelo se llama Sistema
+import modelo.Sistema;
 /**
  *
  * @author mikfu
@@ -16,7 +16,7 @@ public class Main {
     private static GestorVistas gestor;
     private static Sistema modelo;
 
-    // Métodos estáticos para exponer el gestor y el modelo [cite: 233, 235, 239]
+    // Exponer el gestor y el modelo
     public static GestorVistas getGestorVistas() {
         return gestor;
     }
@@ -25,7 +25,7 @@ public class Main {
         return modelo;
     }
 
-    // En el método main se construye el gestor y se muestra la ventana inicial [cite: 240]
+    // Inicialización de la aplicación
     public static void main(String args[]) {
         gestor = new GestorVistas();
         modelo = new Sistema(); 
